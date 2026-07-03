@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { api } from "@/lib/api";
+import { api, setToken } from "@/lib/api";
 
 const AuthContext = createContext(null);
 
@@ -28,18 +28,25 @@ export function AuthProvider({ children }) {
 
   async function iniciarSesion(email, password) {
     const data = await api.post("/api/auth/login", { email, password });
+    setToken(data.token);
     setUsuario(data.usuario);
     return data.usuario;
   }
 
   async function registrar(payload) {
     const data = await api.post("/api/auth/register", payload);
+    setToken(data.token);
     setUsuario(data.usuario);
     return data.usuario;
   }
 
   async function cerrarSesion() {
-    await api.post("/api/auth/logout");
+    try {
+      await api.post("/api/auth/logout");
+    } catch {
+      // si la petición falla igual limpiamos la sesión local
+    }
+    setToken(null);
     setUsuario(null);
     router.push("/login");
   }
