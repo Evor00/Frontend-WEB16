@@ -1,65 +1,135 @@
+import Link from "next/link";
 import Image from "next/image";
 
-export default function Home() {
+export const metadata = {
+  title: "Inicio",
+  description:
+    "Registra incidencias, dales seguimiento y resuélvelas a tiempo con el Sistema de Mesa de Ayuda de Tecsup.",
+};
+
+const CARACTERISTICAS = [
+  {
+    titulo: "Registro de tickets",
+    descripcion:
+      "Los clientes reportan incidencias de hardware, software, red o accesos en segundos.",
+    icono: "📝",
+  },
+  {
+    titulo: "Asignación de responsables",
+    descripcion:
+      "El administrador asigna cada ticket al agente de soporte más adecuado.",
+    icono: "🧑‍💻",
+  },
+  {
+    titulo: "Seguimiento de estados",
+    descripcion:
+      "Controla el ciclo de vida: abierto, en proceso, resuelto y cerrado.",
+    icono: "📊",
+  },
+  {
+    titulo: "Historial de atención",
+    descripcion:
+      "Cada acción y comentario queda registrado para auditar la atención brindada.",
+    icono: "🕒",
+  },
+];
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <div>
+      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
+        <div className="grid items-center gap-10 lg:grid-cols-2">
+          <div>
+            <span className="inline-block rounded-full bg-sky-100 px-3 py-1 text-xs font-semibold text-sky-700">
+              Evaluación Final &middot; Desarrollo de Aplicaciones Web Avanzado
+            </span>
+            <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+              Sistema de Mesa de Ayuda <span className="text-sky-700">(Help Desk)</span>
+            </h1>
+            <p className="mt-4 text-lg text-slate-600">
+              Digitaliza la gestión de incidencias de tu empresa: crea tickets, asigna
+              responsables, actualiza estados y mantén un historial completo de atención al
+              cliente.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link
+                href="/register"
+                className="rounded-md bg-sky-700 px-5 py-3 text-sm font-semibold text-white shadow hover:bg-sky-800"
+              >
+                Crear una cuenta
+              </Link>
+              <Link
+                href="/login"
+                className="rounded-md border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100"
+              >
+                Ya tengo cuenta
+              </Link>
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+              src="/globe.svg"
+              alt="Ilustración de una red global de soporte técnico conectado"
+              width={56}
+              height={56}
+              priority
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <h2 className="mt-4 text-sm font-semibold uppercase tracking-wide text-slate-500">
+              Roles del sistema
+            </h2>
+            <ul className="mt-4 space-y-4">
+              <li className="flex items-start gap-3">
+                <span className="mt-0.5 text-xl">👤</span>
+                <div>
+                  <p className="font-semibold text-slate-800">Cliente</p>
+                  <p className="text-sm text-slate-500">Crea tickets y consulta su estado.</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-0.5 text-xl">🎧</span>
+                <div>
+                  <p className="font-semibold text-slate-800">Soporte</p>
+                  <p className="text-sm text-slate-500">
+                    Atiende los tickets asignados y actualiza su estado.
+                  </p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-0.5 text-xl">🛠️</span>
+                <div>
+                  <p className="font-semibold text-slate-800">Administrador</p>
+                  <p className="text-sm text-slate-500">
+                    Gestiona usuarios y asigna responsables a cada ticket.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
-      </main>
+      </section>
+
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <h2 className="text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+            Todo lo que necesitas para tu mesa de ayuda
+          </h2>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {CARACTERISTICAS.map((c) => (
+              <div
+                key={c.titulo}
+                className="rounded-xl border border-slate-200 p-5 transition-shadow hover:shadow-md"
+              >
+                <span className="text-3xl" aria-hidden="true">
+                  {c.icono}
+                </span>
+                <h3 className="mt-3 font-semibold text-slate-800">{c.titulo}</h3>
+                <p className="mt-1 text-sm text-slate-500">{c.descripcion}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
